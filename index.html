@@ -47,6 +47,82 @@
             word-wrap: break-word;
         }
 
+        /* --- BARRA DE NAVEGACIÓN SUPERIOR --- */
+        .main-navbar {
+            background-color: #f3f4f7;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-title {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #202124;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--ama-magenta);
+        }
+
+        /* Estado activo (Página principal) */
+        .nav-link.active {
+            font-weight: 800;
+            color: #000000;
+        }
+
+        .nav-search-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            margin-left: 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-search-btn:hover {
+            color: var(--ama-magenta);
+        }
+
         /* --- HERO SECTION --- */
         .hero {
             background-image: url('https://i.postimg.cc/XJRbwZv8/1B5B19EC-6A02-4219-A62F-4D9C4DEB65D8.png');
@@ -113,14 +189,11 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 16px;
-            
-            /* Padding adaptable: compacto en móvil, amplio en PC */
             padding: clamp(1.2rem, 4vw, 3rem);
             margin-bottom: 2rem;
             box-shadow: 0 8px 25px rgba(0,0,0,0.06);
             position: relative;
             overflow: hidden;
-            
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.5s ease;
@@ -160,7 +233,6 @@
         }
 
         p {
-            /* Izquierda en móviles para evitar huecos raros; se ajusta según pantalla */
             text-align: left;
             font-size: clamp(0.95rem, 2vw, 1.1rem);
             color: var(--soft-gray);
@@ -248,10 +320,10 @@
         .nav-card:nth-child(2) .btn-action { background-color: var(--ama-turquoise); }
         .nav-card:nth-child(3) .btn-action { background-color: var(--ama-green); }
 
-        /* --- ACCESIBILIDAD FLOTANTE (Adaptada a pantallas pequeñas) --- */
+        /* --- ACCESIBILIDAD FLOTANTE --- */
         .accessibility-bar {
             position: fixed;
-            bottom: top 60px;
+            bottom: 20px;
             right: 15px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
@@ -290,54 +362,86 @@
             font-weight: 700;
         }
 
-        /* Ajustes específicos para móviles */
-        @media (max-width: 600px) {
-            .accessibility-label {
-                display: none; /* Oculta el texto "Tamaño de letra" en celular para ahorrar espacio */
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.8rem 1rem;
             }
-            p {
-                text-align: left; /* Alineación limpia para evitar separaciones feas en palabras */
+            .nav-menu {
+                width: 100%;
+                overflow-x: auto;
+                padding-top: 0.6rem;
+                gap: 1.2rem;
             }
         }
 
+        @media (max-width: 600px) {
+            .accessibility-label {
+                display: none;
+            }
+            p {
+                text-align: left;
+            }
+        }
 
-       /* ============================================================== */
-        /* --- NUEVO CÓDIGO CSS: BOTÓN CON EFECTO ABSOLUTE + SCROLL --- */
-        /* ============================================================== */
+        /* --- BOTÓN WHATSAPP --- */
         .btn-whatsapp-flotante {
-            position: absolute;         /* Cambiado a absolute como en SO */
-            top: 100px;                 /* Posición inicial */
-            left: 15px;                 
-            width: 55px;                
-            height: 55px;               
-            background-color: #25d366;  
-            border-radius: 50%;         
+            position: absolute;
+            top: 100px;
+            left: 15px;
+            width: 55px;
+            height: 55px;
+            background-color: #25d366;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); 
-            z-index: 1000;              
-            text-decoration: none;      
-            
-            /* La transición hace el efecto suave (0.5s recomendado para no marear) */
-            transition: top 0.5s ease-out, transform 0.3s ease, background-color 0.3s ease; 
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-decoration: none;
+            transition: top 0.5s ease-out, transform 0.3s ease, background-color 0.3s ease;
         }
 
         .btn-whatsapp-flotante:hover {
-            transform: scale(1.1);      
+            transform: scale(1.1);
             background-color: #20b858;
         }
 
         .btn-whatsapp-flotante svg {
-            width: 30px;                
+            width: 30px;
             height: 30px;
-            fill: white;                
-        }  
-
-
+            fill: white;
+        }
     </style>
 </head>
 <body>
+
+<!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+<nav class="main-navbar">
+    <a href="index.html" class="nav-brand">
+        <img src="https://i.postimg.cc/XJRbwZv8/1B5B19EC-6A02-4219-A62F-4D9C4DEB65D8.png" alt="Centro AMA Logo" class="nav-logo">
+        <span class="brand-title">Adultos Mayores Aprendi...</span>
+    </a>
+
+    <div class="nav-menu">
+        <a href="index.html" class="nav-link active">Página principal</a>
+        <a href="quienes-somos.html" class="nav-link">Quiénes somos</a>
+        <a href="que-ofrecemos.html" class="nav-link">¿Qué ofrecemos?</a>
+        <a href="programa-educativo.html" class="nav-link">Programa Educativo</a>
+        <a href="testimonios.html" class="nav-link">Testimonios</a>
+        <a href="contacto.html" class="nav-link">Contacto y ubicación</a>
+        
+        <!-- Icono de Búsqueda -->
+        <button class="nav-search-btn" title="Buscar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </div>
+</nav>
 
 <!-- Barra de accesibilidad flotante -->
 <div class="accessibility-bar">
@@ -346,7 +450,6 @@
     <button class="accessibility-btn" onclick="adjustFont(-1)" title="Disminuir tamaño">A-</button>
 </div>
 
-
 <!-- BOTÓN DE WHATSAPP FLOTANTE -->
 <a href="https://wa.me/525519377301" class="btn-whatsapp-flotante" target="_blank" rel="noopener noreferrer" title="Contáctanos por WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -354,22 +457,19 @@
     </svg>
 </a>
 
-
-<!-- Encabezado Principal / Hero -->
+<!-- Hero -->
 <header class="hero">
     <h1>Centro AMA</h1>
     <h3>Adultos Mayores Aprendiendo</h3>
     
-    <a href="https://www.youtube.com" target="_blank" class="impact-phrase">
-        QUE DICEN NUESTROS ALUMNOS
+    <a href="testimonios.html" class="impact-phrase">
+        QUÉ DICEN NUESTROS ALUMNOS
     </a>
 </header>
 
-
-
 <main class="container">
 
-    <!-- Sección 1: El Envejecimiento en México -->
+    <!-- Sección 1 -->
     <section id="envejecimiento">
         <h2>El Envejecimiento en México: Una Realidad Inevitable</h2>
         <p>
@@ -380,7 +480,7 @@
         </p>
     </section>
 
-    <!-- Sección 2: Respuesta: Centro AMA -->
+    <!-- Sección 2 -->
     <section id="descubrimiento">
         <h2>Respuesta: Centro AMA</h2>
         <p>
@@ -391,7 +491,7 @@
         </p>
     </section>
 
-    <!-- Sección 3: Nuestra Meta (Derrumbando Prejuicios) -->
+    <!-- Sección 3 -->
     <section id="meta">
         <h2>Nuestra Meta: Cambiar la forma en que vemos la vejez</h2>
         <p>
@@ -407,19 +507,19 @@
 
     <!-- Sección 4: Grid de Navegación -->
     <div class="nav-grid">
-        <a href="https://sites.google.com/u/0/d/1YusufFN--fr1_1Danz26PoDUlQ79qL7-/p/1Zdqox-BKGjqNUC5NET16bXTJw85vCEt2/preview" class="nav-card">
+        <a href="quienes-somos.html" class="nav-card">
             <h3>¿Quiénes Somos?</h3>
             <p>Conoce nuestra misión, visión, los valores que nos guían y nuestro pilar educativo gerontogógico.</p>
             <span class="btn-action">Conócenos</span>
         </a>
 
-        <a href="https://sites.google.com/u/0/d/1YusufFN--fr1_1Danz26PoDUlQ79qL7-/p/1NhqhRFSWKpYzpakIlQl52UX42xE2K3Jc/preview" class="nav-card">
+        <a href="programa-educativo.html" class="nav-card">
             <h3>Programa Educativo</h3>
             <p>Explora nuestros talleres, cursos y metodologías adaptadas especialmente para el desarrollo cognitivo.</p>
             <span class="btn-action">Ver Talleres</span>
         </a>
 
-        <a href="https://sites.google.com/u/0/d/1YusufFN--fr1_1Danz26PoDUlQ79qL7-/p/1LRr6ewM1uDr4ulmdG28dUvVXh7K1R8k2/preview" class="nav-card">
+        <a href="contacto.html" class="nav-card">
             <h3>Contacto y Ubicación</h3>
             <p>¿Listo para visitarnos? Encuentra nuestra dirección en Tlalnepantla, teléfonos y horarios de atención.</p>
             <span class="btn-action">Escríbenos</span>
@@ -452,25 +552,18 @@
 
     sections.forEach(section => observer.observe(section));
 
-
-
-    /* JAVASCRIPT: EFECTO FLOTADOR WHATSAPP (Basado en Stack Overflow) */
-    /* JAVASCRIPT: EFECTO FLOTADOR WHATSAPP (Corregido para fromTop) */
+    /* JAVASCRIPT: EFECTO FLOTADOR WHATSAPP */
     window.addEventListener('scroll', function() {
         var winScrollTop = window.scrollY || document.documentElement.scrollTop;
         var floater = document.querySelector('.btn-whatsapp-flotante');
         
-        // Distancia desde el borde SUPERIOR
-        var fromTop = 40;
-
-        // La fórmula simplificada para seguir la parte de arriba
+        var fromTop = 100;
         var topPosition = winScrollTop + fromTop;
         
         floater.style.top = topPosition + 'px';
     });
 
     window.dispatchEvent(new Event('scroll'));
-
 </script>
 
 </body>
