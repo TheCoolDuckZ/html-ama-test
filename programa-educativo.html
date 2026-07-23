@@ -403,5 +403,18 @@
     sections.forEach(section => observer.observe(section));
 </script>
 
+<!-- Contenedor donde se cargará el pie de página -->
+<div id="footer-container"></div>
+
+<!-- Script para cargar footer.html dinámicamente -->
+<script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el footer:', error));
+</script>
+    
 </body>
 </html>
